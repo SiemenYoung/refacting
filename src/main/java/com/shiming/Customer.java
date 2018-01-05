@@ -56,13 +56,11 @@ public class Customer {
         while (enumeration.hasMoreElements()) {
             Rental each = (Rental) enumeration.nextElement();
 
-            frequentRenterPoints ++;
-
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE)&& each.getDaysRental() >1 ) frequentRenterPoints++;
-
             result += "\t" + each.getMovie() + "\t" + String.valueOf( each.getCharge()) + "\n";
 
             totalAmount +=  each.getCharge();
+
+            frequentRenterPoints += each.getFrequentRenterPoints();
 
         }
 
@@ -71,6 +69,8 @@ public class Customer {
         return result;
 
     }
+
+
 
 
 }
