@@ -56,7 +56,7 @@ public class Customer {
         while (enumeration.hasMoreElements()) {
             Rental each = (Rental) enumeration.nextElement();
 
-            double thisAmount = amountFor(each);
+            double thisAmount = each.getCharge();
 
 
             frequentRenterPoints ++;
@@ -75,8 +75,5 @@ public class Customer {
 
     }
 
-    private double amountFor(Rental aRental) {
-
-        return aRental.getCharge();
-    }
+    
 }
