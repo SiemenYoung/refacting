@@ -10,15 +10,7 @@
  */
 package com.shiming;
 
-/**
- * @version 1.0.0
- * @Title: Movie
- * @Package: com.shiming
- * @Description: Copyright: Copyright (c) 2016
- * @Company: 成都壹柒互动科技有限公司
- * @author yangshiming.ysm
- * @date 2018/1/4 12:49
- */
+
 public class Movie {
 
     public static final int CHILDRENS = 2;
@@ -27,11 +19,11 @@ public class Movie {
 
     private String title;
 
-    private int priceCode;
+    private Price price;
 
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceCode = priceCode;
+        setPriceCode(priceCode);
     }
 
     public String getTitle() {
@@ -43,48 +35,43 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return priceCode;
+        return price.getPriceCode();
     }
 
     public void setPriceCode(int priceCode) {
-        this.priceCode = priceCode;
+
+        switch ( priceCode) {
+            case Movie.REGULAR:
+
+               price = new RegularPrice();
+
+                break;
+            case Movie.NEW_RELEASE:
+
+                price = new NewReleasePrice();
+
+                break;
+            case Movie.CHILDRENS:
+
+                price = new ChildrenPrice();
+
+                break;
+
+
+            default:
+                throw new IllegalArgumentException("Incorrect price code");
+        }
+
     }
 
     public double getCharge(int daysRental) {
 
-        int result = 0;
-
-
-        switch ( getPriceCode()) {
-            case Movie.REGULAR:
-                result +=2;
-                if (  daysRental > 2) {
-                    result += (  daysRental - 2)*1.5;
-                }
-                break;
-            case Movie.NEW_RELEASE:
-
-                result +=   daysRental *3;
-
-                break;
-            case Movie.CHILDRENS:
-                result +=1.5;
-                if (  daysRental > 3) {
-                    result += (  daysRental - 3)*1.5;
-                }
-                break;
-
-        }
-
-        return result;
+        return price.getCharge(daysRental);
     }
 
     public int getFrequentRenterPoints(int daysRental){
 
-        if (( getPriceCode() == Movie.NEW_RELEASE) &&  daysRental > 1 ) {
-            return 2;
-        }else{
-            return 1;
-        }
+        return price.getFrequentRenterPoints(daysRental);
+
     }
 }

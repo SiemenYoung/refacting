@@ -13,15 +13,7 @@ package com.shiming;
 import java.util.Enumeration;
 import java.util.Vector;
 
-/**
- * @version 1.0.0
- * @Title: Customer
- * @Package: com.shiming
- * @Description: Copyright: Copyright (c) 2016
- * @Company: 成都壹柒互动科技有限公司
- * @author yangshiming.ysm
- * @date 2018/1/4 12:53
- */
+
 public class Customer {
 
     private String name;
